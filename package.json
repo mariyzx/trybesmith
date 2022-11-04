@@ -10,7 +10,7 @@
     "posttest": "ts-node tests/recreateDatabase.ts",
     "restore": "ts-node tests/recreateDatabase.ts",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
-  },
+  }, 
   "keywords": [],
   "author": "",
   "license": "ISC",
