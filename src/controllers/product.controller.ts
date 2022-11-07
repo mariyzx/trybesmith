@@ -7,6 +7,7 @@ export default class ProductController {
   create = async (req: Request, res: Response) => {
     const product = req.body;
 
+    console.log('entrou no controller');
     const productCreated = await this.ProductService.create(product);
     res.status(201).json(productCreated);
   };
