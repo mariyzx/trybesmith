@@ -1,5 +1,5 @@
-import { RowDataPacket } from 'mysql2';
-import { IOrder } from '../interfaces/IOrder';
+import { ResultSetHeader, RowDataPacket } from 'mysql2';
+import { INewOrder, IOrder } from '../interfaces/IOrder';
 import mysql from './connection';
 
 export default class OrderModel {
@@ -16,5 +16,25 @@ export default class OrderModel {
     GROUP BY O.id;`);
 
     return rows;
+  };
+
+  public create = async (order: INewOrder): Promise<boolean> => {
+    const { userId, productsIds } = order;
+    const [{ insertId }] = await this.connection.execute<ResultSetHeader>(
+      'INSERT INTO Trybesmith.Orders (userId) VALUES (?)',
+      [userId],
+    );
+
+    if (insertId) {
+      await Promise.all(productsIds.map(async (prod) => {
+        await this.connection.execute<ResultSetHeader>(
+          'UPDATE Trybesmith.Products SET orderId = ? WHERE id = ?',
+          [insertId, prod],
+        );
+      }));
+      return true;
+    }
+
+    return false;
   };
 }
