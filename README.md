@@ -33,3 +33,17 @@ O projeto Trybesmith foi desenvolvido por [Mariana Werneck](https://www.linkedin
     > Instale as dependências [**Caso existam**] com `npm install`
     Para rodar o projeto desta forma, **obrigatoriamente** você deve ter o `node` instalado em seu computador.
 </details>
+
+## Tecnologias
+  - Typescript
+  - Node.js
+  - Express.js
+  - JSON Web Token
+  - DotENV
+  - Joi
+  - Docker
+  - MySQL
+  
+
+
+
